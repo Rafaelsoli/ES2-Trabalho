@@ -7,14 +7,19 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 });
 
-// ========== CONTATOS (DEV 1 - Ana) ==========
-export const contatoService = {
-  listar: () => api.get('/contatos'),
-  buscar: (id) => api.get(`/contatos/${id}`),
-  criar: (contato) => api.post('/contatos', contato),
-  atualizar: (id, contato) => api.put(`/contatos/${id}`, contato),
-  deletar: (id) => api.delete(`/contatos/${id}`)
+// ========== PROFISSIONAIS ==========
+// Ajustado para '/profissionals' para bater com o Java
+export const RiverService = { // ou profissionalService
+  listar: () => api.get('/profissionals'),
+  buscar: (id) => api.get(`/profissionals/${id}`),
+  criar: (profissional) => api.post('/profissionals', profissional),
+  atualizar: (id, profissional) => api.put(`/profissionals/${id}`, profissional),
+  deletar: (id) => api.delete(`/profissionals/${id}`)
 };
+
+// Vincula as duas formas de escrita para que tanto o Form quanto o List funcionem!
+export const profissionalService = RiverService;
+export const ProfissionalService = RiverService;
 
 // ========== COMPROMISSOS (DEV 2 - Bruno) ==========
 export const compromissoService = {

@@ -1,13 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import ContatoList from './components/ContatoList';
-import ContatoForm from './components/ContatoForm';
+import ProfissionalList from './components/ProfissionalList';
+import ProfissionalForm from './components/ProfissionalForm';
 import './App.css';
 
-/**
- * DEV 1 - Ana: Módulo de Contatos
- * Branch: feature/contatos
- */
 function App() {
   return (
     <Router>
@@ -15,16 +11,24 @@ function App() {
         <nav className="navbar">
           <h1>📅 Agenda Web</h1>
           <div className="nav-links">
-            <Link to="/contatos">Contatos</Link>
+            {/* Link atualizado para apontar para Profissionais */}
+            <Link to="/profissionais">Profissionais</Link>
           </div>
         </nav>
 
         <main className="container">
           <Routes>
-            <Route path="/" element={<ContatoList />} />
-            <Route path="/contatos" element={<ContatoList />} />
-            <Route path="/contatos/novo" element={<ContatoForm />} />
-            <Route path="/contatos/editar/:id" element={<ContatoForm />} />
+            {/* A rota inicial "/" agora carrega a lista de profissionais */}
+            <Route path="/" element={<ProfissionalList />} />
+            
+            {/* Rotas de Profissionais (maiuscula e minuscula mapeadas por precaução) */}
+            <Route path="/profissionais" element={<ProfissionalList />} />
+            <Route path="/Profissionais" element={<ProfissionalList />} />
+            
+            <Route path="/profissionais/novo" element={<ProfissionalForm />} />
+            
+            <Route path="/profissionais/editar/:id" element={<ProfissionalForm />} />
+            <Route path="/Profissionais/editar/:id" element={<ProfissionalForm />} />
           </Routes>
         </main>
       </div>
