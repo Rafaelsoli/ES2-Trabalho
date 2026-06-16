@@ -27,11 +27,11 @@ const api = axios.create({
 
 // ========== PROFISSIONAIS DE SAÚDE ==========
 export const profissionalService = {
-  listar: () => api.get('/profissionals'),
-  buscar: (id) => api.get(`/profissionals/${id}`),
-  criar: (profissional) => api.post('/profissionals', profesional),
-  atualizar: (id, profissional) => api.put(`/profissionals/${id}`, profissional),
-  deletar: (id) => api.delete(`/profissionals/${id}`)
+  listar: () => api.get('/profissionais-saude'),
+  buscar: (id) => api.get(`/profissionais-saude/${id}`),
+  criar: (profissional) => api.post('/profissionais-saude', profissional),
+  atualizar: (id, profissional) => api.put(`/profissionais-saude/${id}`, profissional),
+  deletar: (id) => api.delete(`/profissionais-saude/${id}`)
 };
 
 // ========== ATENDIMENTOS ==========

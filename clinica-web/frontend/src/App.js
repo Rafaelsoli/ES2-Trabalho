@@ -9,9 +9,9 @@ import ProfissionalForm from './components/ProfissionalForm';
 import AtendimentoList from './components/AtendimentoList';
 import AtendimentoForm from './components/AtendimentoForm';
 
-// Importações dos componentes de Exames Laboratoriais
-import ExameLabList from './components/ExameLabList';
-import ExameLabForm from './components/ExameLabForm';
+// Importações dos componentes de Exams Laboratoriais
+import ExamLabList from './components/ExamLabList';
+import ExamLabForm from './components/ExamLabForm';
 
 import './App.css';
 
@@ -24,7 +24,7 @@ function App() {
           <div className="nav-links">
             <Link to="/profissionais">Profissionais</Link>
             <Link to="/atendimentos">Atendimentos</Link>
-            <Link to="/exames-lab">Exames Laboratoriais</Link>
+            <Link to="/exames-lab">Exams Laboratoriais</Link>
           </div>
         </nav>
 
@@ -43,10 +43,10 @@ function App() {
             <Route path="/atendimentos/novo" element={<AtendimentoForm />} />
             <Route path="/atendimentos/editar/:id" element={<AtendimentoForm />} />
 
-            {/* Rotas da entidade ExameLab */}
-            <Route path="/exames-lab" element={<ExameLabList />} />
-            <Route path="/exames-lab/novo" element={<ExameLabForm />} />
-            <Route path="/exames-lab/editar/:id" element={<ExameLabForm />} />
+            {/* Rotas da entidade ExamLab */}
+            <Route path="/exames-lab" element={<ExamLabList />} />
+            <Route path="/exames-lab/novo" element={<ExamLabForm />} />
+            <Route path="/exames-lab/editar/:id" element={<ExamLabForm />} />
           </Routes>
         </main>
       </div>
