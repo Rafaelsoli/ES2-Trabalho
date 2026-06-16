@@ -57,7 +57,7 @@ function ProfissionalList() {
               <td>{profissional.telefone}</td>
               <td>{profissional.email}</td>
               <td>
-                <Link to={`/profissionais/editar/${profissional.id}`} className="btn btn-sm">Editar</Link>
+                <Link to={`/profissionais/editar/${profissional.id}`} className="btn btn-sm" style={{ marginRight: '8px'}}>Editar</Link>
                 <button onClick={() => deletarProfissional(profissional.id)} className="btn btn-danger btn-sm">
                   Excluir
                 </button>
