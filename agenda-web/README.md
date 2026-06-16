@@ -1,58 +1,65 @@
-# Agenda Web - DEV 1 (Ana) - Módulo de Contatos
+# Agenda Web - Material Educacional
 
-## Branch: `feature/contatos`
+Sistema de Agenda Web para demonstração do ciclo completo de desenvolvimento de software.
 
-Este é o código da **Desenvolvedora 1 (Ana)**, responsável pelo **CRUD de Contatos**.
+## Tecnologias
 
-## O que este módulo contém
+| Camada | Tecnologia |
+|--------|-----------|
+| Backend | Java 17 + Spring Boot 3.2 |
+| Frontend | React 18 + React Router |
+| Banco de Dados | PostgreSQL 15 |
+| Build Backend | Maven |
+| Build Frontend | Node.js 20 + npm |
+| Versionamento | Git + GitHub |
+| CI/CD | GitHub Actions |
+| Containers | Docker + Docker Compose |
+| Produção | AWS (ECS + RDS + ECR + ALB) |
 
-### Backend (Java / Spring Boot)
-- `Contato.java` — Entity JPA (modelo de dados)
-- `ContatoRepository.java` — Interface de acesso ao banco (Spring Data JPA)
-- `ContatoController.java` — REST API com endpoints CRUD
-- `ContatoControllerTest.java` — Testes unitários (JUnit 5 + Mockito)
+## Estrutura do Projeto
 
-### Frontend (React)
-- `ContatoList.js` — Componente de listagem de contatos
-- `ContatoForm.js` — Formulário de criação/edição de contato
-- `api.js` — Serviço de comunicação com o backend (Axios)
+```
+agenda-web/
+├── backend/           # API REST (Java/Spring Boot)
+│   ├── pom.xml
+│   ├── Dockerfile
+│   └── src/
+├── frontend/          # UI (React)
+│   ├── package.json
+│   ├── Dockerfile
+│   └── src/
+├── docker-compose.yml
+├── .github/workflows/ci-cd.yml
+└── apresentacao_completa.html  # Apresentação da aula
+```
 
-### Endpoints da API
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | /api/contatos | Listar todos os contatos |
-| GET | /api/contatos/{id} | Buscar contato por ID |
-| POST | /api/contatos | Criar novo contato |
-| PUT | /api/contatos/{id} | Atualizar contato |
-| DELETE | /api/contatos/{id} | Excluir contato |
-
-## Como executar
+## Como Executar (Desenvolvimento)
 
 ```bash
-# Backend
-cd backend
-mvn spring-boot:run
+# Usando Docker Compose
+docker-compose up -d
 
-# Frontend
+# Backend disponível em: http://localhost:8080
+# Frontend disponível em: http://localhost:3000
+```
+
+## Como Executar Testes
+
+```bash
+# Backend (JUnit 5 + Mockito)
+cd backend
+mvn test
+
+# Frontend (Jest)
 cd frontend
-npm install
-npm start
+npm test
 ```
 
-## Como rodar os testes
+## Divisão de Trabalho
 
-```bash
-cd backend
-mvn test -Dtest="ContatoControllerTest"
-```
+- **DEV 1 - Ana:** CRUD de Contatos (ContatoController + ContatoList/Form)
+- **DEV 2 - Bruno:** CRUD de Compromissos (CompromissoController + CompromissoList/Form)
 
-## Comandos Git para Ana
+## Apresentação
 
-```bash
-git checkout -b feature/contatos
-# ... desenvolver ...
-git add .
-git commit -m "feat: implementa CRUD de contatos (Spring Boot + React)"
-git push origin feature/contatos
-# Abrir Pull Request no GitHub
-```
+Abra o arquivo `apresentacao_completa.html` no navegador para ver a apresentação completa da aula.
