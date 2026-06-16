@@ -1,9 +1,9 @@
-package com.agenda;
+package com.clinica;
 
-import com.agenda.controller.CompromissoController;
-import com.agenda.model.Compromisso;
-import com.agenda.model.Contato;
-import com.agenda.repository.CompromissoRepository;
+import com.clinica.controller.CompromissoController;
+import com.clinica.model.Compromisso;
+import com.clinica.model.Contato;
+import com.clinica.repository.CompromissoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
