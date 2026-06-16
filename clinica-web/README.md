@@ -1,65 +1,13 @@
-# Clinica Web - Material Educacional
+# <img src="https://imgs.search.brave.com/7ZSiyNgtzNd9Hbb6ao56Nwr7Drfn8DXqiNYfGBaEx8g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9taW5l/Y3JhZnQud2lraS9p/bWFnZXMvRW5jaGFu/dGVkX05ldGhlcml0/ZV9Td29yZC5naWY_/YWI2MWU.gif" width="50"> ATIVIDADE 07 - Engenharia de software II
 
-Sistema de Clinica Web para demonstração do ciclo completo de desenvolvimento de software.
+Repositório dedicado a atividade 07 da disciplina Engenharia de software II da PUC Minas.
 
-## Tecnologias
+## Alunos integrantes da equipe
 
-| Camada | Tecnologia |
-|--------|-----------|
-| Backend | Java 17 + Spring Boot 3.2 |
-| Frontend | React 18 + React Router |
-| Banco de Dados | PostgreSQL 15 |
-| Build Backend | Maven |
-| Build Frontend | Node.js 20 + npm |
-| Versionamento | Git + GitHub |
-| CI/CD | GitHub Actions |
-| Containers | Docker + Docker Compose |
-| Produção | AWS (ECS + RDS + ECR + ALB) |
+* Bruno Rafael Santos Oliveira
+* Matheus Eduardo Campos Soares
+* Thiago Pereira de Oliveira
 
-## Estrutura do Projeto
+## Professores responsáveis
 
-```
-clinica-web/
-├── backend/           # API REST (Java/Spring Boot)
-│   ├── pom.xml
-│   ├── Dockerfile
-│   └── src/
-├── frontend/          # UI (React)
-│   ├── package.json
-│   ├── Dockerfile
-│   └── src/
-├── docker-compose.yml
-├── .github/workflows/ci-cd.yml
-└── apresentacao_completa.html  # Apresentação da aula
-```
-
-## Como Executar (Desenvolvimento)
-
-```bash
-# Usando Docker Compose
-docker-compose up -d
-
-# Backend disponível em: http://localhost:8080
-# Frontend disponível em: http://localhost:3000
-```
-
-## Como Executar Testes
-
-```bash
-# Backend (JUnit 5 + Mockito)
-cd backend
-mvn test
-
-# Frontend (Jest)
-cd frontend
-npm test
-```
-
-## Divisão de Trabalho
-
-- **DEV 1 - Ana:** CRUD de Contatos (ContatoController + ContatoList/Form)
-- **DEV 2 - Bruno:** CRUD de Compromissos (CompromissoController + CompromissoList/Form)
-
-## Apresentação
-
-Abra o arquivo `apresentacao_completa.html` no navegador para ver a apresentação completa da aula.
+* Sandro
