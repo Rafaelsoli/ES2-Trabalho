@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 // Resolve a URL base da API.
-// Aceita tanto uma URL completa (ex.: https://host/api) quanto apenas o host
-// (ex.: agenda-backend.onrender.com), normalizando para https://host/api.
-// Isso permite que o render.yaml injete o host do backend via `fromService`.
 function resolveApiUrl() {
   const raw = process.env.REACT_APP_API_URL;
   if (!raw) return 'http://localhost:8080/api';
@@ -27,11 +24,11 @@ const api = axios.create({
 
 // ========== PROFISSIONAIS DE SAÚDE ==========
 export const profissionalService = {
-  listar: () => api.get('/profissionals'),
-  buscar: (id) => api.get(`/profissionals/${id}`),
-  criar: (profissional) => api.post('/profissionals', profesional),
-  atualizar: (id, profissional) => api.put(`/profissionals/${id}`, profissional),
-  deletar: (id) => api.delete(`/profissionals/${id}`)
+  listar: () => api.get('/profissionais'),
+  buscar: (id) => api.get(`/profissionais/${id}`),
+  criar: (profissional) => api.post('/profissionais', profissional),
+  atualizar: (id, profissional) => api.put(`/profissionais/${id}`, profissional),
+  deletar: (id) => api.delete(`/profissionais/${id}`)
 };
 
 // ========== ATENDIMENTOS ==========
@@ -43,9 +40,8 @@ export const atendimentoService = {
   deletar: (id) => api.delete(`/atendimentos/${id}`)
 };
 
-// ========== EXAMES LABORATORIAIS ==========
-export const exameLabService = {
-  // Aceita parâmetros opcionais como { descricao: '...' } ou { atendimentoId: 1 }
+// ========== EXAMES LABORATORIAIS (CORRIGIDO SEM O 'N') ==========
+export const exameLabService = { 
   listar: (params) => api.get('/exames-lab', { params }),
   buscar: (id) => api.get(`/exames-lab/${id}`),
   criar: (exameLab) => api.post('/exames-lab', exameLab),

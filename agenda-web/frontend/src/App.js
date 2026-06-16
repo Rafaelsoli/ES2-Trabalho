@@ -9,9 +9,9 @@ import ProfissionalForm from './components/ProfissionalForm';
 import AtendimentoList from './components/AtendimentoList';
 import AtendimentoForm from './components/AtendimentoForm';
 
-// Importações dos componentes de Exames Laboratoriais
-import ExameLabList from './components/ExameLabList';
-import ExameLabForm from './components/ExameLabForm';
+// Importações dos componentes de Exames Laboratoriais (CORRIGIDO: Nome do ficheiro sem o "e")
+import ExameLabList from './components/ExamLabList';
+import ExameLabForm from './components/ExamLabForm';
 
 import './App.css';
 

@@ -22,7 +22,7 @@ function ProfissionalList() {
   };
 
   const deletarProfissional = async (id) => {
-    if (window.confirm('Tem certeza que deseja excluir este profissional de saúde?')) {
+    if (window.confirm('Tem certeza que deseja excluir este profissional?')) {
       try {
         await profissionalService.deletar(id);
         carregarProfissionais();
@@ -37,7 +37,7 @@ function ProfissionalList() {
   return (
     <div>
       <div className="header">
-        <h2>📋 Profissionais de Saúde</h2>
+        <h2>📋 Profissionais</h2>
         <Link to="/profissionais/novo" className="btn btn-primary">+ Novo Profissional</Link>
       </div>
 
@@ -46,7 +46,6 @@ function ProfissionalList() {
           <tr>
             <th>Nome</th>
             <th>Telefone</th>
-            <th>Endereço</th>
             <th>Categoria</th>
             <th>Ações</th>
           </tr>
@@ -56,10 +55,9 @@ function ProfissionalList() {
             <tr key={profissional.id}>
               <td>{profissional.nome}</td>
               <td>{profissional.telefone}</td>
-              <td>{profissional.endereco}</td>
               <td>{profissional.categoria}</td>
               <td>
-                <Link to={`/profissionais/editar/${profissional.id}`} className="btn btn-sm">Editar</Link>
+                <Link to={`/profissionais/editar/${profissional.id}`} className="btn btn-sm" style={{ marginRight: '8px'}}>Editar</Link>
                 <button onClick={() => deletarProfissional(profissional.id)} className="btn btn-danger btn-sm">
                   Excluir
                 </button>
@@ -69,7 +67,7 @@ function ProfissionalList() {
         </tbody>
       </table>
 
-      {profissionais.length === 0 && <p className="empty">Nenhum profissional de saúde cadastrado.</p>}
+      {profissionais.length === 0 && <p className="empty">Nenhum profissional cadastrado.</p>}
     </div>
   );
 }

@@ -32,6 +32,6 @@ public class Atendimento {
     private String receitaSaude;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profissional_saude_id", nullable = false)
-    private ProfissionalDeSaude profissionalDeSaude;
+    @JoinColumn(name = "profissional_id", nullable = false)
+    private Profissional profissional;
 }
