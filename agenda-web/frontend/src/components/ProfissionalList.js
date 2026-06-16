@@ -47,6 +47,7 @@ function ProfissionalList() {
             <th>Nome</th>
             <th>Telefone</th>
             <th>Email</th>
+            <th>Categoria</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -56,6 +57,7 @@ function ProfissionalList() {
               <td>{profissional.nome}</td>
               <td>{profissional.telefone}</td>
               <td>{profissional.email}</td>
+              <td>{profissional.categoria}</td>
               <td>
                 <Link to={`/profissionais/editar/${profissional.id}`} className="btn btn-sm" style={{ marginRight: '8px'}}>Editar</Link>
                 <button onClick={() => deletarProfissional(profissional.id)} className="btn btn-danger btn-sm">
