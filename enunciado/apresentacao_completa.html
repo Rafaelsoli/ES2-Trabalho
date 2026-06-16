@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula: Desenvolvimento de Software - Agenda Web (Java + React + Git + CI/CD + AWS)</title>
+    <title>Aula: Desenvolvimento de Software - Clinica Web (Java + React + Git + CI/CD + AWS)</title>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +51,7 @@
 <body>
 <div class="container">
 
-<h1>&#9749; Desenvolvimento de Software: Agenda Web<small>Java (Spring Boot) + React | Git &rarr; GitHub &rarr; CI/CD &rarr; AWS | 2 Desenvolvedores | PostgreSQL</small></h1>
+<h1>&#9749; Desenvolvimento de Software: Clinica Web<small>Java (Spring Boot) + React | Git &rarr; GitHub &rarr; CI/CD &rarr; AWS | 2 Desenvolvedores | PostgreSQL</small></h1>
 
 <div class="section">
 <div class="toc">
@@ -78,7 +78,7 @@
 <div class="section" id="visao-geral">
 <h2>1. Vis&atilde;o Geral do Projeto e Arquitetura</h2>
 
-<h3>O Sistema: Agenda Web</h3>
+<h3>O Sistema: Clinica Web</h3>
 <table>
     <tr><th>Aspecto</th><th>Tecnologia</th></tr>
     <tr><td>Backend</td><td><strong>Java 17</strong> com <strong>Spring Boot 3.2</strong></td></tr>
@@ -376,27 +376,27 @@ gitGraph
 <div class="dev1">
 <span class="dev1-tag">DEV 1 - Ana</span>
 <div class="code-block"><span class="comment"># Ana cria o projeto com Spring Initializr (ou IntelliJ)</span>
-mkdir agenda-web && cd agenda-web
+mkdir clinica-web && cd clinica-web
 git init
 
 <span class="comment"># Estrutura do projeto</span>
-mkdir -p backend/src/main/java/com/agenda/{controller,model,repository}
-mkdir -p backend/src/test/java/com/agenda
+mkdir -p backend/src/main/java/com/clinica/{controller,model,repository}
+mkdir -p backend/src/test/java/com/clinica
 mkdir -p frontend/src/{components,services}
 
 <span class="comment"># Primeiro commit</span>
 git add .
-git commit -m "chore: estrutura inicial do projeto Agenda Web (Java + React)"</div>
+git commit -m "chore: estrutura inicial do projeto Clinica Web (Java + React)"</div>
 </div>
 
 <h3><span class="step-number">2</span>Bruno Clona o Reposit&oacute;rio</h3>
 <div class="code-block"><span class="comment"># Bruno clona o reposit&oacute;rio do GitHub</span>
-git clone https://github.com/equipe/agenda-web.git
-cd agenda-web
+git clone https://github.com/equipe/clinica-web.git
+cd clinica-web
 
 <span class="comment"># Verifica o hist&oacute;rico</span>
 git log --oneline
-<span class="comment"># a1b2c3d chore: estrutura inicial do projeto Agenda Web (Java + React)</span></div>
+<span class="comment"># a1b2c3d chore: estrutura inicial do projeto Clinica Web (Java + React)</span></div>
 
 <h3><span class="step-number">3</span>Cria&ccedil;&atilde;o de Branches</h3>
 <div class="dev1">
@@ -462,7 +462,7 @@ sequenceDiagram
 <h3><span class="step-number">1</span>Push para o GitHub</h3>
 <div class="dev1">
 <span class="dev1-tag">DEV 1 - Ana</span>
-<div class="code-block">git remote add origin https://github.com/equipe/agenda-web.git
+<div class="code-block">git remote add origin https://github.com/equipe/clinica-web.git
 git push origin feature/contatos</div>
 </div>
 <div class="dev2">
@@ -486,14 +486,14 @@ git log --oneline
 <h2>6. C&oacute;digo do Backend (Java / Spring Boot)</h2>
 
 <h3>Estrutura do Projeto</h3>
-<div class="code-block">agenda-web/
+<div class="code-block">clinica-web/
 &#9500;&#9472;&#9472; .github/workflows/ci-cd.yml
 &#9500;&#9472;&#9472; backend/
 &#9474;   &#9500;&#9472;&#9472; pom.xml
 &#9474;   &#9500;&#9472;&#9472; Dockerfile
 &#9474;   &#9492;&#9472;&#9472; src/
-&#9474;       &#9500;&#9472;&#9472; main/java/com/agenda/
-&#9474;       &#9474;   &#9500;&#9472;&#9472; AgendaApplication.java
+&#9474;       &#9500;&#9472;&#9472; main/java/com/clinica/
+&#9474;       &#9474;   &#9500;&#9472;&#9472; ClinicaApplication.java
 &#9474;       &#9474;   &#9500;&#9472;&#9472; model/
 &#9474;       &#9474;   &#9474;   &#9500;&#9472;&#9472; Contato.java
 &#9474;       &#9474;   &#9474;   &#9492;&#9472;&#9472; Compromisso.java
@@ -503,7 +503,7 @@ git log --oneline
 &#9474;       &#9474;   &#9492;&#9472;&#9472; controller/
 &#9474;       &#9474;       &#9500;&#9472;&#9472; ContatoController.java
 &#9474;       &#9474;       &#9492;&#9472;&#9472; CompromissoController.java
-&#9474;       &#9492;&#9472;&#9472; test/java/com/agenda/
+&#9474;       &#9492;&#9472;&#9472; test/java/com/clinica/
 &#9474;           &#9500;&#9472;&#9472; ContatoControllerTest.java
 &#9474;           &#9500;&#9472;&#9472; CompromissoControllerTest.java
 &#9474;           &#9492;&#9472;&#9472; IntegracaoTest.java
@@ -635,7 +635,7 @@ git log --oneline
 
 <h3>application.properties (Configura&ccedil;&atilde;o PostgreSQL)</h3>
 <div class="code-block"><span class="comment"># Conex&atilde;o com PostgreSQL</span>
-spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:agenda_db}
+spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:clinica_db}
 spring.datasource.username=${DB_USER:postgres}
 spring.datasource.password=${DB_PASSWORD:postgres}
 
@@ -878,7 +878,7 @@ graph LR
 </div>
 
 <h3>Arquivo: .github/workflows/ci-cd.yml</h3>
-<div class="code-block"><span class="keyword">name:</span> CI/CD Pipeline - Agenda Web (Java + React)
+<div class="code-block"><span class="keyword">name:</span> CI/CD Pipeline - Clinica Web (Java + React)
 
 <span class="keyword">on:</span>
   push:
@@ -896,7 +896,7 @@ graph LR
       postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: agenda_test
+          POSTGRES_DB: clinica_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports: [ "5432:5432" ]
@@ -953,10 +953,10 @@ graph LR
       - name: <span class="string">&#128230; Push &rarr; Amazon ECR</span>
         run: |
           aws ecr get-login-password | docker login ...
-          docker push $ECR_REGISTRY/agenda-backend:latest
-          docker push $ECR_REGISTRY/agenda-frontend:latest
+          docker push $ECR_REGISTRY/clinica-backend:latest
+          docker push $ECR_REGISTRY/clinica-frontend:latest
       - name: <span class="string">&#128640; Deploy AWS ECS</span>
-        run: aws ecs update-service --cluster agenda-cluster --force-new-deployment</div>
+        run: aws ecs update-service --cluster clinica-cluster --force-new-deployment</div>
 </div>
 
 <!-- ============================================================ -->
@@ -1095,7 +1095,7 @@ EXPOSE 80</div>
     ports: ["8080:8080"]
     environment:
       - DB_HOST=postgres
-      - DB_NAME=agenda_db
+      - DB_NAME=clinica_db
       - DB_USER=postgres
       - DB_PASSWORD=postgres
     depends_on:
@@ -1111,7 +1111,7 @@ EXPOSE 80</div>
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_DB: agenda_db
+      POSTGRES_DB: clinica_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports: ["5432:5432"]

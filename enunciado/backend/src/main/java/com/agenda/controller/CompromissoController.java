@@ -1,7 +1,7 @@
-package com.agenda.controller;
+package com.clinica.controller;
 
-import com.agenda.model.Compromisso;
-import com.agenda.repository.CompromissoRepository;
+import com.clinica.model.Compromisso;
+import com.clinica.repository.CompromissoRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

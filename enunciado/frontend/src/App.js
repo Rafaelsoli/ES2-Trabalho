@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="App">
         <nav className="navbar">
-          <h1>📅 Agenda Web</h1>
+          <h1>📅 Clinica Web</h1>
           <div className="nav-links">
             <Link to="/contatos">Contatos</Link>
             <Link to="/compromissos">Compromissos</Link>

@@ -1,8 +1,8 @@
-package com.agenda;
+package com.clinica;
 
-import com.agenda.controller.ContatoController;
-import com.agenda.model.Contato;
-import com.agenda.repository.ContatoRepository;
+import com.clinica.controller.ContatoController;
+import com.clinica.model.Contato;
+import com.clinica.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
