@@ -25,22 +25,32 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 });
 
-// ========== CONTATOS (DEV 1 - Ana) ==========
-export const contatoService = {
-  listar: () => api.get('/contatos'),
-  buscar: (id) => api.get(`/contatos/${id}`),
-  criar: (contato) => api.post('/contatos', contato),
-  atualizar: (id, contato) => api.put(`/contatos/${id}`, contato),
-  deletar: (id) => api.delete(`/contatos/${id}`)
+// ========== PROFISSIONAIS DE SAÚDE ==========
+export const profissionalService = {
+  listar: () => api.get('/profissionals'),
+  buscar: (id) => api.get(`/profissionals/${id}`),
+  criar: (profissional) => api.post('/profissionals', profesional),
+  atualizar: (id, profissional) => api.put(`/profissionals/${id}`, profissional),
+  deletar: (id) => api.delete(`/profissionals/${id}`)
 };
 
-// ========== COMPROMISSOS (DEV 2 - Bruno) ==========
-export const compromissoService = {
-  listar: () => api.get('/compromissos'),
-  buscar: (id) => api.get(`/compromissos/${id}`),
-  criar: (compromisso) => api.post('/compromissos', compromisso),
-  atualizar: (id, compromisso) => api.put(`/compromissos/${id}`, compromisso),
-  deletar: (id) => api.delete(`/compromissos/${id}`)
+// ========== ATENDIMENTOS ==========
+export const atendimentoService = {
+  listar: () => api.get('/atendimentos'),
+  buscar: (id) => api.get(`/atendimentos/${id}`),
+  criar: (atendimento) => api.post('/atendimentos', atendimento),
+  atualizar: (id, atendimento) => api.put(`/atendimentos/${id}`, atendimento),
+  deletar: (id) => api.delete(`/atendimentos/${id}`)
+};
+
+// ========== EXAMES LABORATORIAIS ==========
+export const exameLabService = {
+  // Aceita parâmetros opcionais como { descricao: '...' } ou { atendimentoId: 1 }
+  listar: (params) => api.get('/exames-lab', { params }),
+  buscar: (id) => api.get(`/exames-lab/${id}`),
+  criar: (exameLab) => api.post('/exames-lab', exameLab),
+  atualizar: (id, exameLab) => api.put(`/exames-lab/${id}`, exameLab),
+  deletar: (id) => api.delete(`/exames-lab/${id}`)
 };
 
 export default api;

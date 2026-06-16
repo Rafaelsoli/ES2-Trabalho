@@ -1,9 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import ContatoList from './components/ContatoList';
-import ContatoForm from './components/ContatoForm';
-import CompromissoList from './components/CompromissoList';
-import CompromissoForm from './components/CompromissoForm';
+
+// Importações dos componentes de Profissionais
+import ProfissionalList from './components/ProfissionalList';
+import ProfissionalForm from './components/ProfissionalForm';
+
+// Importações dos componentes de Atendimentos
+import AtendimentoList from './components/AtendimentoList';
+import AtendimentoForm from './components/AtendimentoForm';
+
+// Importações dos componentes de Exames Laboratoriais
+import ExameLabList from './components/ExameLabList';
+import ExameLabForm from './components/ExameLabForm';
+
 import './App.css';
 
 function App() {
@@ -11,22 +20,33 @@ function App() {
     <Router>
       <div className="App">
         <nav className="navbar">
-          <h1>📅 Agenda Web</h1>
+          <h1>🏥 Agenda Médica</h1>
           <div className="nav-links">
-            <Link to="/contatos">Contatos</Link>
-            <Link to="/compromissos">Compromissos</Link>
+            <Link to="/profissionais">Profissionais</Link>
+            <Link to="/atendimentos">Atendimentos</Link>
+            <Link to="/exames-lab">Exames Laboratoriais</Link>
           </div>
         </nav>
 
         <main className="container">
           <Routes>
-            <Route path="/" element={<ContatoList />} />
-            <Route path="/contatos" element={<ContatoList />} />
-            <Route path="/contatos/novo" element={<ContatoForm />} />
-            <Route path="/contatos/editar/:id" element={<ContatoForm />} />
-            <Route path="/compromissos" element={<CompromissoList />} />
-            <Route path="/compromissos/novo" element={<CompromissoForm />} />
-            <Route path="/compromissos/editar/:id" element={<CompromissoForm />} />
+            {/* Rota inicial padrão redirecionando para a listagem de profissionais */}
+            <Route path="/" element={<ProfissionalList />} />
+
+            {/* Rotas da entidade Profissional */}
+            <Route path="/profissionais" element={<ProfissionalList />} />
+            <Route path="/profissionais/novo" element={<ProfissionalForm />} />
+            <Route path="/profissionais/editar/:id" element={<ProfissionalForm />} />
+
+            {/* Rotas da entidade Atendimento */}
+            <Route path="/atendimentos" element={<AtendimentoList />} />
+            <Route path="/atendimentos/novo" element={<AtendimentoForm />} />
+            <Route path="/atendimentos/editar/:id" element={<AtendimentoForm />} />
+
+            {/* Rotas da entidade ExameLab */}
+            <Route path="/exames-lab" element={<ExameLabList />} />
+            <Route path="/exames-lab/novo" element={<ExameLabForm />} />
+            <Route path="/exames-lab/editar/:id" element={<ExameLabForm />} />
           </Routes>
         </main>
       </div>

@@ -1,7 +1,8 @@
 package com.agenda;
 
-import com.agenda.model.Compromisso;
-import com.agenda.model.Contato;
+import com.agenda.model.Atendimento;
+import com.agenda.model.ExameLab;
+import com.agenda.model.Profissional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,73 +44,102 @@ class IntegracaoTest {
     }
 
     @Test
-    void deveExecutarFluxoCompletoContato() throws Exception {
-        // 1. CRIAR contato
-        Contato contato = new Contato();
-        contato.setNome("Maria Santos");
-        contato.setTelefone("31988887777");
-        contato.setEmail("maria@email.com");
+    void deveExecutarFluxoCompletoProfissional() throws Exception {
+        // 1. CRIAR profissional
+        Profissional prof = new Profissional();
+        prof.setNome("Dr. Roberto Alencar");
+        prof.setTelefone("31988881111");
+        prof.setEmail("roberto.med@email.com");
+        prof.setEndereco("Av. Contorno, 1000");
+        prof.setCategoria("Cardiologista");
 
-        MvcResult result = mockMvc.perform(post("/api/contatos")
+        MvcResult result = mockMvc.perform(post("/api/profissionals")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(contato)))
+                .content(objectMapper.writeValueAsString(prof)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.nome").value("Maria Santos"))
+                .andExpect(jsonPath("$.nome").value("Dr. Roberto Alencar"))
+                .andExpect(jsonPath("$.categoria").value("Cardiologista"))
                 .andReturn();
 
         Long id = objectMapper.readTree(result.getResponse().getContentAsString())
                 .get("id").asLong();
 
-        // 2. BUSCAR contato criado
-        mockMvc.perform(get("/api/contatos/" + id))
+        // 2. BUSCAR profissional criado
+        mockMvc.perform(get("/api/profissionals/" + id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.email").value("maria@email.com"));
+                .andExpect(jsonPath("$.email").value("roberto.med@email.com"));
 
-        // 3. ATUALIZAR contato
-        contato.setNome("Maria Santos Silva");
-        contato.setEmail("maria.silva@email.com");
+        // 3. ATUALIZAR profissional
+        prof.setNome("Dr. Roberto Alencar Silva");
+        prof.setEmail("roberto.silva@email.com");
 
-        mockMvc.perform(put("/api/contatos/" + id)
+        mockMvc.perform(put("/api/profissionals/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(contato)))
+                .content(objectMapper.writeValueAsString(prof)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nome").value("Maria Santos Silva"));
+                .andExpect(jsonPath("$.nome").value("Dr. Roberto Alencar Silva"));
 
-        // 4. DELETAR contato
-        mockMvc.perform(delete("/api/contatos/" + id))
+        // 4. DELETAR profissional
+        mockMvc.perform(delete("/api/profissionals/" + id))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void deveVincularCompromissoAContato() throws Exception {
-        // Criar contato
-        Contato contato = new Contato();
-        contato.setNome("Pedro Lima");
-        contato.setTelefone("31977776666");
+    void deveExecutarFluxoIntegradoDeAtendimentoEExameLaboratorial() throws Exception {
+        // 1. Instanciar e cadastrar um Profissional de Saúde base
+        Profissional cardiologista = new Profissional();
+        cardiologista.setNome("Dra. Sandra Ramos");
+        cardiologista.setCategoria("Cardiologista");
+        cardiologista.setEmail("sandra.ramos@email.com");
 
-        MvcResult contatoResult = mockMvc.perform(post("/api/contatos")
+        MvcResult profResult = mockMvc.perform(post("/api/profissionals")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(contato)))
+                .content(objectMapper.writeValueAsString(cardiologista)))
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        Long contatoId = objectMapper.readTree(
-                contatoResult.getResponse().getContentAsString()).get("id").asLong();
+        Long profId = objectMapper.readTree(profResult.getResponse().getContentAsString())
+                .get("id").asLong();
 
-        // Criar compromisso vinculado
-        String compJson = String.format("""
+        // 2. Criar um Atendimento vinculado ao Profissional recém-criado
+        String atendimentoJson = String.format("""
             {
-                "titulo": "Almoço de negócios",
-                "data": "2024-12-20",
-                "hora": "12:00",
-                "contato": {"id": %d}
+                "data": "2026-06-20",
+                "horario": "14:30",
+                "problemaTexto": "Arritmia e dores recorrentes no peito.",
+                "receitaSaude": "Tomar medicação X de 12 em 12 horas.",
+                "profissionalDeSaude": {"id": %d}
             }
-            """, contatoId);
+            """, profId);
 
-        mockMvc.perform(post("/api/compromissos")
+        MvcResult atendimentoResult = mockMvc.perform(post("/api/atendimentos")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(compJson))
+                .content(atendimentoJson))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.titulo").value("Almoço de negócios"));
+                .andExpect(jsonPath("$.problemaTexto").value("Arritmia e dores recorrentes no peito."))
+                .andReturn();
+
+        Long atendimentoId = objectMapper.readTree(atendimentoResult.getResponse().getContentAsString())
+                .get("id").asLong();
+
+        // 3. Solicitar e vincular um ExameLab a este Atendimento específico
+        String exameJson = String.format("""
+            {
+                "descricao": "Eletrocardiograma de Esforço com monitoramento de ritmo",
+                "atendimento": {"id": %d}
+            }
+            """, atendimentoId);
+
+        mockMvc.perform(post("/api/exames-lab")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(exameJson))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.descricao").value("Eletrocardiograma de Esforço com monitoramento de ritmo"));
+
+        // 4. Consultar o endpoint de exames filtrando por atendimento para garantir a consistência relacional
+        mockMvc.perform(get("/api/exames-lab").param("atendimentoId", atendimentoId.toString()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].descricao").value("Eletrocardiograma de Esforço com monitoramento de ritmo"))
+                .andExpect(jsonPath("$[0].atendimento.id").value(atendimentoId));
     }
 }
